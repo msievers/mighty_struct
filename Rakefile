@@ -6,9 +6,7 @@ RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
 
 task :benchmark do
-  require_relative "./benchmark/joffrey/mab_document"
-  require_relative "./benchmark/joffrey/mab_xml_parser"
+  require_relative "./benchmark/mighty_struct/mighty_struct_versus_others"
 
-  #Benchmark::Joffrey::MabDocument.new.call
-  Benchmark::Joffrey::MabXmlParser.new.call
+  Benchmark::MightyStruct::MightyStructVersusOthers.new.call
 end
