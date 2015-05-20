@@ -57,13 +57,6 @@ I thought it realy would be nice to jump through hashes like one would do on the
 
 Performance and easy retrival of the original objects was another consideration.
 
-## Usage
-
-```ruby
-
-
-```
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
