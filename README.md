@@ -1,6 +1,6 @@
 # MightyStruct
 
-MightyStruct is a Enumerable wrapper which gives deep method access to object properties using method notation (just like `OpenStruct`). It tries to combine several approaches from other projects.
+MightyStruct is a Enumerable wrapper which gives deep method access to object properties using method notation (just like `OpenStruct`). It tries to combine several approaches from other projects
 
 * easy creation from existing hashes/arrays
 * deep method access
@@ -31,6 +31,12 @@ mighty_struct.a.last.b # => 2
 mighty_struct.to_object.eql?(hash) # => true
 ```
 
+Or play with it on your own. It's just one command (line) away.
+
+```bash
+git clone https://github.com/msievers/mighty_struct.git && cd mighty_struct && bundle && bin/console
+```
+
 ## Another of this method invocation hashes? Really?!
 
 Before I started coding this, I tried the following three alternatives
@@ -39,7 +45,13 @@ Before I started coding this, I tried the following three alternatives
 * `recursive-open-struct`
 * `Hashie::Mash`
 
-Neither of them provided everything I wanted. `OpenStruct` does not provide recursive behavior out-of-the-box. Several gems try to fill the gap, but I had no luck with the one I tested. `recursive-open-struct` struggled with some deep nested array/hash combinations. `Hashie::Mash` came close, but it seems, the method accessors are handled via method_missing, which prevents tab completion when doing things in `pry`.
+Neither of them provided everything I wanted.
+
+`OpenStruct` does not provide recursive behavior out-of-the-box. Several gems try to fill the gap, but I had no luck with the one I tested.
+
+`recursive-open-struct` struggled with some deep nested array/hash combinations.
+
+`Hashie::Mash` came close, but it seems, the method accessors are handled via method_missing, which prevents tab completion when doing things in `pry`.
 
 I thought it realy would be nice to jump through hashes like one would do on the console with tab completion aso.
 
