@@ -28,7 +28,7 @@ mighty_struct.a[0].b # => 1
 mighty_struct.a.last.b # => 2
 
 # get back the original hash ... look ma', it's still the same hash
-mighty_struct.to_object.eql?(hash) # => true
+MightyStruct.to_object(mighty_struct).eql?(hash) # => true
 ```
 
 Or play with it on your own. It's just one command (line) away.
