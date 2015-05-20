@@ -6,7 +6,7 @@ class MightyStruct
       object.keys.each do |_key|
         class_eval <<-EORUBY, __FILE__, __LINE__ + 1
           def #{_key}
-            value = @object[#{_key.is_a?(Symbol) ? ':' << _key.to_s : _key}]
+            value = @object[#{_key.is_a?(Symbol) ? ':' << _key.to_s : '"' << _key << '"'}]
             self.class.new?(value) ? self.class.new(value) : value
           end
         EORUBY
