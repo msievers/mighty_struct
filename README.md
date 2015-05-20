@@ -53,9 +53,7 @@ Neither of them provided everything I wanted.
 
 `Hashie::Mash` came close, but it seems, the method accessors are handled via method_missing, which prevents tab completion when doing things in `pry`.
 
-I thought it realy would be nice to jump through hashes like one would do on the console with tab completion aso.
-
-Performance and easy retrival of the original objects was another consideration.
+I thought it realy would be nice to jump through hashes like one would do on the console with tab completion. Performance and easy retrival of the original objects was another consideration.
 
 ## Development
 
