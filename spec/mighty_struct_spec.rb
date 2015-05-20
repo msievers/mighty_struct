@@ -1,15 +1,20 @@
 describe MightyStruct do
   let(:hash) do
     {
-      a: 1,
+      a: "a",
       b: [
         1,
         {
-          "d" => "muff"
-        }
+          "d" => "d"
+        },
+        [
+          {
+            e: "e"
+          }
+        ]
       ],
       "c" => {
-        dasdsadsada: 1
+        c: "c"
       }
     }
   end

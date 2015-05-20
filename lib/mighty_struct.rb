@@ -2,9 +2,9 @@ require "mighty_struct/version"
 
 class MightyStruct
   def self.define_property_accessors!(mighty_struct, object)
-    if object.is_a?(Hash)
+    if object.respond_to?(:[]) && object.respond_to?(:keys)
       object.keys.each do |_key|
-        class_eval <<-EORUBY, __FILE__, __LINE__ + 1
+        mighty_struct.singleton_class.class_eval <<-EORUBY, __FILE__, __LINE__ + 1
           def #{_key}
             value = @object[#{_key.is_a?(Symbol) ? ':' << _key.to_s : '"' << _key << '"'}]
             self.class.new?(value) ? self.class.new(value) : value
@@ -15,7 +15,7 @@ class MightyStruct
   end
 
   def self.new?(object)
-    object.is_a?(Array) || object.is_a?(Hash)
+    object.is_a?(Enumerable)
   end
 
   def initialize(object)
