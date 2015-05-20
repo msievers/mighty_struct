@@ -1,28 +1,59 @@
 # MightyStruct
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mighty_struct`. To experiment with that code, run `bin/console` for an interactive prompt.
+MightyStruct is a Enumerable wrapper which gives deep method access to object properties using method notation (just like `OpenStruct`). It tries to combine several approaches from other projects
 
-TODO: Delete this and the text above, and describe your gem
+* easy creation from existing hashes/arrays
+* deep method access
+* transparent method passing to the underlaying datastructure
 
-## Installation
-
-Add this line to your application's Gemfile:
+## Example
 
 ```ruby
-gem 'mighty_struct'
+require "mighty_struct"
+
+hash = {
+  a: [
+    { b: 1 },
+    { b: 2 },
+  ],
+}
+
+# create it from some hash or array
+mighty_struct = MightyStruct.new(hash)
+
+# access deeply nested properties 
+mighty_struct.a[0].b # => 1
+
+# call methods transparently on the wrapped objects
+mighty_struct.a.last.b # => 2
+
+# get back the original hash ... look ma', it's still the same hash
+mighty_struct.to_object.eql?(hash) # => true
 ```
 
-And then execute:
+Or play with it on your own. It's just one command (line) away.
 
-    $ bundle
+```bash
+git clone https://github.com/msievers/mighty_struct.git && cd mighty_struct && bundle && bin/console
+```
 
-Or install it yourself as:
+## Another of this method invocation hashes? Really?!
 
-    $ gem install mighty_struct
+Before I started coding this, I tried the following three alternatives
 
-## Usage
+* `OpenStruct`
+* `recursive-open-struct`
+* `Hashie::Mash`
 
-TODO: Write usage instructions here
+Neither of them provided everything I wanted.
+
+`OpenStruct` does not provide recursive behavior out-of-the-box. Several gems try to fill the gap, but I had no luck with the one I tested.
+
+`recursive-open-struct` struggled with some deep nested array/hash combinations.
+
+`Hashie::Mash` came close, but it seems, the method accessors are handled via method_missing, which prevents tab completion when doing things in `pry`.
+
+I thought it realy would be nice to jump through hashes like one would do on the console with tab completion. Performance and easy retrival of the original objects was another consideration.
 
 ## Development
 
@@ -32,7 +63,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/mighty_struct/fork )
+1. Fork it ( https://github.com/msievers/mighty_struct/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
