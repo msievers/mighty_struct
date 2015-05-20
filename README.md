@@ -27,7 +27,7 @@ mighty_struct.a[0].b # => 1
 # call methods transparently on the wrapped objects
 mighty_struct.a.last.b # => 2
 
-# get back the original hash ... look ma, it's still the some hash
+# get back the original hash ... look ma', it's still the same hash
 mighty_struct.to_object.eql?(hash) # => true
 ```
 
