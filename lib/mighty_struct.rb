@@ -26,21 +26,15 @@ class MightyStruct
     self.class.define_property_accessors!(self, @object = object)
   end
 
-  def [](key)
-    # ensure indifferent access
-    if @object.is_a?(Hash)
-      @object[key] || @object[key.to_s] || @object[key.to_sym]
-    else
-      @object[key]
-    end
-  end
-
   #
   # last line of defense
   #
   def method_missing(method_name, *arguments, &block)
     if @object.respond_to?(method_name)
-      @object.send(method_name, *arguments, &block)
+      result = @object.send(method_name, *arguments, &block)
+
+      # ensure that results of called methods are mighty structs again
+      self.class.new?(result) ? self.class.new(result) : result
     else
       super
     end

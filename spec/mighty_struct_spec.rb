@@ -2,7 +2,12 @@ describe MightyStruct do
   let(:hash) do
     {
       a: 1,
-      b: [1,2],
+      b: [
+        1,
+        {
+          "d" => "muff"
+        }
+      ],
       "c" => {
         dasdsadsada: 1
       }
