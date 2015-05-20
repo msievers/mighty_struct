@@ -3,7 +3,7 @@ describe MightyStruct do
     {
       a: 1,
       b: [1,2],
-      c: {
+      "c" => {
         dasdsadsada: 1
       }
     }
