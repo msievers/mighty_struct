@@ -35,9 +35,9 @@ mighty_struct.to_object.eql?(hash) # => true
 
 Before I started coding this, I tried the following three alternatives
 
-* OpenStruct
-* recursive-open-struct
-* Hashie::Mash
+* `OpenStruct`
+* `recursive-open-struct`
+* `Hashie::Mash`
 
 Neither of them provided everything I wanted. `OpenStruct` does not provide recursive behavior out-of-the-box. Several gems try to fill the gap, but I had no luck with the one I tested. `recursive-open-struct` struggled with some deep nested array/hash combinations. `Hashie::Mash` came close, but it seems, the method accessors are handled via method_missing, which prevents tab completion when doing things in `pry`.
 
