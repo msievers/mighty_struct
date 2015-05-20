@@ -5,6 +5,11 @@ class MightyStruct
     object.is_a?(Enumerable)
   end
 
+  # in order not to pollute the instance's method namespace this is a class method
+  def self.to_object(mighty_struct)
+    mighty_struct.instance_variable_get(:@object)
+  end
+
   def initialize(object, options = {})
     unless self.class.new?(object)
       raise ArgumentError.new("Cannot create a an instance of #{self.class} for the given object!")
