@@ -1,6 +1,6 @@
 # MightyStruct
 
-MightyStruct is a Enumerable wrapper which gives deep method access to object properties using method notation (e.g. like `OpenStruct`). It tries to combine several approaches from other projects.
+MightyStruct is a Enumerable wrapper which gives deep method access to object properties using method notation (just like `OpenStruct`). It tries to combine several approaches from other projects.
 
 * easy creation from existing hashes/arrays
 * deep method access
@@ -11,22 +11,26 @@ MightyStruct is a Enumerable wrapper which gives deep method access to object pr
 ```ruby
 require "mighty_struct"
 
-mighty_struct = MightyStruct.new({
+hash = {
   a: [
     { b: 1 },
-    { b: 2 }
+    { b: 2 },
   ],
-  "d" => {
-    e: {
-      "f": 3
-    }
-  }
-})
+}
 
-mighty_struct.a.first.b # => 1
-mighty_struct.a.[1].b # => 2
-mighty_struct.d.e.f # => 3
+# create it from some hash or array
+mighty_struct = MightyStruct.new(hash)
+
+# access deeply nested properties 
+mighty_struct.a[0].b # => 1
+
+# call methods transparently on the wrapped objects
+mighty_struct.a.last.b # => 2
+
+# get back the original hash ... look ma, it's still the some hash
+mighty_struct.to_object.eql?(hash) # => true
 ```
+
 ## Another of this method invocation hashes? Really?!
 
 Before I started coding this, I tried the following three alternatives
@@ -35,7 +39,7 @@ Before I started coding this, I tried the following three alternatives
 * recursive-open-struct
 * Hashie::Mash
 
-Neither of them provided everything I wanted. `OpenStruct` does not provide recursive behavior out-of-the-box. Several gems try to fill the gap, but I had no luck with the one I tested. `recursive-open-struct` struggled with some deep nested array/hash combinations. `Hashie::Mash` came close, but it seems, the method accessors are handled via method_missing, which prevents tab completion when doings this in `pry`.
+Neither of them provided everything I wanted. `OpenStruct` does not provide recursive behavior out-of-the-box. Several gems try to fill the gap, but I had no luck with the one I tested. `recursive-open-struct` struggled with some deep nested array/hash combinations. `Hashie::Mash` came close, but it seems, the method accessors are handled via method_missing, which prevents tab completion when doing things in `pry`.
 
 I thought it realy would be nice to jump through hashes like one would do on the console with tab completion aso.
 
