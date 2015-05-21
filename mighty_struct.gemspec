@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "mighty_struct"
   spec.version       = MightyStruct::VERSION
   spec.authors       = ["Michael Sievers"]
-  spec.summary       = %q{A mighty struct which combines OpenStruct like method access with reasonable performance.}
+  spec.summary       = %q{A mighty struct which wraps objects in order to provide deep method access to its properties.}
   spec.homepage      = "https://github.com/msievers/mighty_struct"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
