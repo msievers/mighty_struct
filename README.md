@@ -61,7 +61,7 @@ Before I started coding this, I tried the following three alternatives
 But neither of them provided everything I wanted.
 
                    | MightyStruct | OpenStruct | recursive-open-struct | Hashie::Mash
----                | ------------ | ---------- | --------------------- | ------------
+---                | :----------: | :--------: | :-------------------: | :----------:
 deep method access | :heavy_check_mark: | :heavy_multiplication_x: | (:heavy_check_mark:) | :heavy_check_mark:
 real method accessors | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_multiplication_x:
 works without object dupping | :heavy_check_mark: | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x:
@@ -72,7 +72,7 @@ original object retrieval | :heavy_check_mark: | :heavy_multiplication_x: | :hea
 
 Method accessors for object properties can either be implemented via `method_missing` or by defining (singleton) methods. The benefit of real methods is, that if you are using a debugger (e.g. `pry`), you can use tab completion to discover methods defined on a object. This does not work for `method_missing` based accessors.
 
-With real method accessors in place, playing with an `mighty_struct` within `pry` just feels like working within a shell.
+With real method accessors in place, playing with a `mighty_struct` within `pry` just feels like working within a shell.
 
 ## Development
 
