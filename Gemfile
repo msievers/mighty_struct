@@ -3,7 +3,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in your gemspec
 gemspec
 
-if !ENV["CI"]
+if !ENV["CI"] && RUBY_ENGINE == "ruby"
   group :development do
     gem "hashdiff"
     gem "pry",                "~> 0.9.12.6"
