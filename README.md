@@ -4,7 +4,7 @@
 
 ## Key features
 
-* wraps any object that responds to `:[]` (e.g `Array` or `Hash`)
+* wraps any object that is an `Enumerable` `:[]` (e.g `Array` or `Hash`)
 * creates method accessors for any object that additionally responds to `:keys` (e.g. `Hash`)
 * deep method access to object properties
 * property accessors are implemented via methods, not `method_missing`
