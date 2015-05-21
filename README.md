@@ -50,7 +50,7 @@ Or play with it on your own. It's just one command (line) away.
 git clone https://github.com/msievers/mighty_struct.git && cd mighty_struct && bundle && bin/console
 ```
 
-## Another of this "method invocation" hashes? Really?!
+## Another of this "method invocation hashes", really?!
 
 Before I started coding this, I tried the following three alternatives
 
