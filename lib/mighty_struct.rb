@@ -6,8 +6,8 @@ class MightyStruct
   end
 
   # in order not to pollute the instance's method namespace this is a class method
-  def self.to_object(mighty_struct)
-    mighty_struct.instance_variable_get(:@object)
+  def self.to_object(object)
+    object.is_a?(self) ? object.instance_variable_get(:@object) : object
   end
 
   def initialize(object, options = {})
