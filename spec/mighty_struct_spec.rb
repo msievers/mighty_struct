@@ -29,8 +29,8 @@ describe MightyStruct do
       #
       # caching
       #
-      context "if called with caching: :disabled" do
-        subject { described_class.new(hash, caching: :disabled) }
+      context "if called without caching: :enabled" do
+        subject { described_class.new(hash) }
 
         it "does not cache accessor results" do
           expect(subject.a).to eq(hash[:a])

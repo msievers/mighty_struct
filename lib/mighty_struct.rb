@@ -15,17 +15,16 @@ class MightyStruct
       raise ArgumentError.new("Cannot create a an instance of #{self.class} for the given object!")
     end
 
-    @cache = {}
-    @cache_mode = options[:caching] || :enabled
+    @cache = options[:caching] == :enabled ? {} : nil
 
     if (@object = object).respond_to?(:keys)
       object.keys.each do |_key|
         unless respond_to?(_key)
           define_singleton_method(_key) do
-            if @cache_mode == :disabled
-              self.class.new?(value = @object[_key]) ? self.class.new(value) : value
+            if @cache
+               @cache[_key] ||= self.class.new?(value = @object[_key]) ? self.class.new(value) : value
             else
-              @cache[_key] ||= self.class.new?(value = @object[_key]) ? self.class.new(value) : value
+              self.class.new?(value = @object[_key]) ? self.class.new(value) : value
             end
           end
         end
@@ -38,7 +37,7 @@ class MightyStruct
   #
   def method_missing(method_name, *arguments, &block)
     if @object.respond_to?(method_name)
-      @cache.clear if @cache_mode == :smart # clear the properties cache if we are smart
+      @cache.clear if @cache # clear the properties cache, because the called method may have side-effects
       result = @object.send(method_name, *arguments, &block)
 
       # ensure that results of called methods are mighty structs again
