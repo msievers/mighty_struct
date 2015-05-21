@@ -1,10 +1,12 @@
 # MightyStruct
 
-MightyStruct is a Enumerable wrapper which gives deep method access to object properties using method notation (just like `OpenStruct`). It tries to combine several approaches from other projects
+`MightyStruct` is an enumerable wrapper which gives deep method access to object properties. It combines beneficial features from functionally related projects like `OpenStruct` and `Hashie::Mash` into an non-inversive, transparant decorator like object wrapper.
 
-* easy creation from existing hashes/arrays
-* deep method access
-* transparent method passing to the underlaying datastructure
+* deep method access to object properties
+* property accessors are methods (tab completion in pry works)
+* dispite property accessors, the namespace of wrapped objects isn't touched
+* all method calls which don't hit a property accessor are dispatched to the wrapped object
+  * results are again wrapped to instances of MightyStruct if possible 
 
 ## Example
 
