@@ -5,7 +5,6 @@ gemspec
 
 if !ENV["CI"] && RUBY_ENGINE == "ruby"
   group :development do
-    gem "hashdiff"
     gem "pry",                "~> 0.9.12.6"
     gem "pry-byebug",         "<= 1.3.2"
     gem "pry-rescue",         "~> 1.4.1", github: "ConradIrwin/pry-rescue", branch: :master
