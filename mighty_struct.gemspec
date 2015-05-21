@@ -9,6 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Michael Sievers"]
   spec.summary       = %q{A mighty struct which wraps objects in order to provide deep method access to its properties.}
   spec.homepage      = "https://github.com/msievers/mighty_struct"
+  spec.licenses      = ["MIT"]
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
