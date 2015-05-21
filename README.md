@@ -58,15 +58,21 @@ Before I started coding this, I tried the following three alternatives
 * `recursive-open-struct`
 * `Hashie::Mash`
 
-Neither of them provided everything I wanted.
+But neither of them provided everything I wanted.
 
-`OpenStruct` does not provide recursive behavior out-of-the-box. Several gems try to fill the gap, but I had no luck with the one I tested.
+                   | MightyStruct | OpenStruct | recursive-open-struct | Hashie::Mash
+---                | ------------ | ---------- | --------------------- | ------------
+deep method access | :heavy_check_mark: | :heavy_multiplication_x: | (:heavy_check_mark:) | :heavy_check_mark:
+real method accessors | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_multiplication_x:
+works without object dupping | :heavy_check_mark: | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x:
+transparent method dispatching | :heavy_check_mark: | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x:
+original object retrieval | :heavy_check_mark: | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x:
 
-`recursive-open-struct` struggled with some deep nested array/hash combinations.
+## Why are real methods as property accessors cool?
 
-`Hashie::Mash` came close, but it seems, the method accessors are handled via method_missing, which prevents tab completion when doing things in `pry`.
+Method accessors for object properties can either be implemented via `method_missing` or by defining (singleton) methods. The benefit of real methods is, that if you are using a debugger (e.g. `pry`), you can use tab completion to discover methods defined on a object. This does not work for `method_missing` based accessors.
 
-I thought it realy would be nice to jump through hashes like one would do on the console with tab completion. Performance and easy retrival of the original objects was another consideration.
+With real method accessors in place, playing with an `mighty_struct` within `pry` just feels like working within a shell.
 
 ## Development
 
