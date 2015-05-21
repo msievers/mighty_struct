@@ -1,10 +1,18 @@
 # MightyStruct
 
-MightyStruct is a Enumerable wrapper which gives deep method access to object properties using method notation (just like `OpenStruct`). It tries to combine several approaches from other projects
+`MightyStruct` is an object wrapper which gives deep method access to properties. It combines beneficial features from functionally related projects like `OpenStruct` and `Hashie::Mash` into an non-inversive, transparant decorator like object wrapper.
 
-* easy creation from existing hashes/arrays
-* deep method access
-* transparent method passing to the underlaying datastructure
+## Key features
+
+* wraps any object that is an `Enumerable` (e.g `Array` or `Hash`)
+* creates method accessors for any object that additionally responds to `:keys` (e.g. `Hash`)
+* deep method access to object properties
+* property accessors are implemented via methods, not `method_missing`
+  * as a result tab completion in pry works
+* dispite property accessors, the namespace of wrapped objects isn't touched
+* all method calls which don't hit a property accessor are dispatched to the wrapped object
+  * results are again wrapped to instances of MightyStruct if possible
+* the wrapped object can be retrieved at any time using `MightyStruct.to_object(obj)`
 
 ## Example
 
@@ -27,7 +35,7 @@ mighty_struct.a[0].b # => 1
 # call methods transparently on the wrapped objects
 mighty_struct.a.last.b # => 2
 
-# get back the original hash ... look ma', it's still the same hash
+# get back the original object ... look ma', it's still the same hash
 MightyStruct.to_object(mighty_struct).eql?(hash) # => true
 ```
 
@@ -37,7 +45,7 @@ Or play with it on your own. It's just one command (line) away.
 git clone https://github.com/msievers/mighty_struct.git && cd mighty_struct && bundle && bin/console
 ```
 
-## Another of this method invocation hashes? Really?!
+## Another of this "method invocation" hashes? Really?!
 
 Before I started coding this, I tried the following three alternatives
 
