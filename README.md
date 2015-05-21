@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/msievers/mighty_struct.svg)](https://travis-ci.org/msievers/mighty_struct)
 [![Test Coverage](https://codeclimate.com/github/msievers/mighty_struct/badges/coverage.svg)](https://codeclimate.com/github/msievers/mighty_struct/coverage)
 [![Code Climate](https://codeclimate.com/github/msievers/mighty_struct/badges/gpa.svg)](https://codeclimate.com/github/msievers/mighty_struct)
+[![Dependency Status](https://gemnasium.com/msievers/mighty_struct.svg)](https://gemnasium.com/msievers/mighty_struct)
 
 `MightyStruct` is an object wrapper which gives deep method access to properties. It combines beneficial features from functionally related projects like `OpenStruct` and `Hashie::Mash` into an non-inversive, transparant decorator like object wrapper.
 
