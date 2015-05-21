@@ -10,8 +10,6 @@ else
 end
 
 require "mighty_struct"
-require "hashdiff"
-require "yaml"
 
 begin
   require "pry"
